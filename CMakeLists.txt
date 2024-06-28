@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
-project(hbl)
+project(hbl VERSION 2.4.4)
 
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD 23)
@@ -20,6 +20,8 @@ include_directories(${PROJECT_SOURCE_DIR}/include/)
 file(GLOB_RECURSE SOURCES_ASM ${PROJECT_SOURCE_DIR}/source/*.s)
 file(GLOB_RECURSE SOURCES_C ${PROJECT_SOURCE_DIR}/source/*.c)
 file(GLOB_RECURSE SOURCES_CXX ${PROJECT_SOURCE_DIR}/source/*.cpp)
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DVERSION=\"v${PROJECT_VERSION}\"")
 
 add_executable(hbl ${SOURCES_ASM} ${SOURCES_C} ${SOURCES_CXX})
 
