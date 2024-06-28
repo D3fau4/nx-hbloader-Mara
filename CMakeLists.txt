@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
-project(cmake_switch_template)
+project(hbl)
 
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD 23)
@@ -21,15 +21,15 @@ file(GLOB_RECURSE SOURCES_ASM ${PROJECT_SOURCE_DIR}/source/*.s)
 file(GLOB_RECURSE SOURCES_C ${PROJECT_SOURCE_DIR}/source/*.c)
 file(GLOB_RECURSE SOURCES_CXX ${PROJECT_SOURCE_DIR}/source/*.cpp)
 
-add_executable(cmake_switch_template ${SOURCES_ASM} ${SOURCES_C} ${SOURCES_CXX})
+add_executable(hbl ${SOURCES_ASM} ${SOURCES_C} ${SOURCES_CXX})
 
 # Next, we need to set the required target properties
 # so CMake can detect the JSON configuration for the module.
-set_target_properties(cmake_switch_template PROPERTIES
+set_target_properties(hbl PROPERTIES
         CONFIG_JSON ${PROJECT_SOURCE_DIR}/sysmodule.json)
 
 # Then, we link the required libraries (libnx) against the executable.
-target_link_libraries(cmake_switch_template switch::libnx)
+target_link_libraries(hbl switch::libnx)
 
 # And finally we can add the actual binary (.nsp) target.
-add_nsp_target(cmake_switch_template)
+add_nsp_target(hbl)
